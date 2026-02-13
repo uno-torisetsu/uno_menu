@@ -217,6 +217,101 @@
       background: linear-gradient(135deg, #FFF2EB 0%, var(--primary-light) 100%);
       border-left: 4px solid var(--primary);
     }
+
+    /* FAQ アコーディオン */
+    .faq-item {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .faq-item:hover {
+      box-shadow: 0 8px 24px rgba(155, 137, 179, 0.08);
+    }
+    .faq-item.open {
+      box-shadow: 0 12px 32px rgba(155, 137, 179, 0.12);
+    }
+    .faq-question {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 20px 24px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      transition: background 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .faq-question:hover {
+      background: rgba(248, 225, 219, 0.15);
+    }
+    .faq-q-badge {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Shippori Mincho', serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--primary);
+      background: linear-gradient(135deg, var(--primary-light) 0%, #FDE8DE 100%);
+    }
+    .faq-toggle {
+      flex-shrink: 0;
+      margin-left: auto;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--pink-beige);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+    .faq-item.open .faq-toggle {
+      transform: rotate(180deg);
+    }
+    .faq-toggle svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--text-muted);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1), padding 0.3s ease;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 600px;
+    }
+    .faq-answer-inner {
+      padding: 0 24px 24px 70px;
+      font-size: 0.85rem;
+      line-height: 1.9;
+      color: var(--text-light);
+    }
+    @media (max-width: 640px) {
+      .faq-question {
+        padding: 16px 18px;
+        font-size: 0.82rem;
+        gap: 12px;
+      }
+      .faq-answer-inner {
+        padding: 0 18px 20px 18px;
+        font-size: 0.8rem;
+      }
+      .faq-q-badge {
+        width: 28px;
+        height: 28px;
+        font-size: 0.75rem;
+      }
+    }
   </style>
 </head>
 <body class="bg-watercolor">
@@ -230,6 +325,7 @@
       <a href="#about" class="hover:text-pink-400 transition-colors">トリセツとは</a>
       <a href="#plans" class="hover:text-pink-400 transition-colors">メニュー</a>
       <a href="#flow" class="hover:text-pink-400 transition-colors">お届けの流れ</a>
+      <a href="#faq" class="hover:text-pink-400 transition-colors">よくある質問</a>
       <a href="https://forms.gle/3w7Tuhrdogrwp1RY7" target="_blank" class="px-6 py-2 rounded-full btn-gradient text-xs uppercase tracking-widest font-bold shadow-sm">お申し込み</a>
     </nav>
     <button class="md:hidden text-2xl" id="mobile-menu-btn">☰</button>
@@ -517,6 +613,12 @@
             <div class="comp-cell"><span class="comp-dash">ー</span></div>
             <div class="comp-cell"><span class="comp-check">●</span></div>
           </div>
+          <div class="comp-row">
+            <div class="comp-cell label">ページ数（目安）</div>
+            <div class="comp-cell">約10P</div>
+            <div class="comp-cell">約20P</div>
+            <div class="comp-cell">約30P</div>
+          </div>
           <div class="comp-row comp-price-row">
             <div class="comp-cell label">価格（税込）</div>
             <div class="comp-cell">¥3,800</div>
@@ -542,7 +644,7 @@
           <h3 class="text-xl font-serif font-bold mb-3">きょうだい同時申し込み特典</h3>
           <p class="text-sm leading-relaxed opacity-80">
             どのプランでも、2人同時にお申し込みいただくと<br>
-            兄弟の相性鑑定パートを<strong>無料</strong>でお付けします。
+            通常<strong>¥1,980</strong>の兄弟相性鑑定パートが<strong>無料</strong>でつきます。
           </p>
         </div>
 
@@ -552,13 +654,79 @@
             <li>✨ 似ているところ・違うところ</li>
             <li>✨ 相性の特徴と摩擦ポイント</li>
             <li>✨ 兄弟関係のヒント</li>
-            <li>✨ 名前から見る関係性</li>
           </ul>
         </div>
 
         <p class="text-center text-xs" style="color: var(--text-muted);">
-          ※ 例：スタンダード版 × 2人 ＋ 相性鑑定 → ¥13,600（相性パート込み）
+          ※ 例：スタンダード版 × 2人 → ¥13,600（通常¥1,980の相性鑑定が無料）
         </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== ママの性質鑑定（追加オプション） ====== -->
+  <section class="py-16 px-6" style="background: linear-gradient(180deg, #FFF9F4 0%, var(--pink-beige) 100%);">
+    <div class="max-w-2xl mx-auto">
+      <div class="text-center mb-8 reveal">
+        <span class="font-script text-3xl text-pink-300 block mb-2">Add-on Option</span>
+        <h2 class="text-xl md:text-2xl font-serif font-bold">ママの性質鑑定を<br class="sm:hidden">追加したい方へ</h2>
+      </div>
+
+      <div class="glass-card overflow-hidden reveal" style="transition-delay: 0.2s; border: 2px solid rgba(201,169,110,0.3);">
+        <div class="p-6 text-center" style="background: linear-gradient(135deg, var(--gold-light) 0%, #FAFAF7 50%, var(--pink-beige) 100%);">
+          <div class="w-14 h-14 mx-auto mb-3 rounded-full flex items-center justify-center text-2xl shadow-sm" style="background: rgba(255,255,255,0.7);">🌿</div>
+          <h3 class="text-lg font-serif font-bold mb-1">ママの性質鑑定</h3>
+          <div class="flex items-baseline gap-1 mt-2 justify-center">
+            <span class="text-sm font-bold" style="color: var(--gold);">¥</span>
+            <span class="text-xl font-extrabold" style="color: var(--gold);">6,500</span>
+            <span class="text-xs" style="color: var(--text-muted);">（税込）</span>
+          </div>
+          <p class="text-xs mt-1" style="color: var(--text-light);">スタンダード版を受けた方向けの追加オプション</p>
+        </div>
+
+        <div class="p-8">
+          <p class="text-sm leading-loose text-center mb-6">
+            スタンダード版でお子さんの性質がわかったあと、<br>
+            <strong style="color: var(--gold);">「やっぱり自分の性質も知りたい」<br>「親子の相性も見てほしい」</strong><br>
+            と感じた方のためのオプションです。
+          </p>
+
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start gap-3 text-sm border-b pb-3" style="border-color: var(--border);">
+              <span class="mt-0.5 w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-[9px] font-bold" style="background: var(--gold-light); border: 2px solid var(--gold); color: var(--gold);">✓</span>
+              ママの性質タイプ・チャート・基本性質
+            </li>
+            <li class="flex items-start gap-3 text-sm border-b pb-3" style="border-color: var(--border);">
+              <span class="mt-0.5 w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-[9px] font-bold" style="background: var(--gold-light); border: 2px solid var(--gold); color: var(--gold);">✓</span>
+              子育てにおけるママの強み
+            </li>
+            <li class="flex items-start gap-3 text-sm border-b pb-3" style="border-color: var(--border);">
+              <span class="mt-0.5 w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-[9px] font-bold" style="background: var(--gold-light); border: 2px solid var(--gold); color: var(--gold);">✓</span>
+              つい陥りやすいパターン
+            </li>
+            <li class="flex items-start gap-3 text-sm border-b pb-3" style="border-color: var(--border);">
+              <span class="mt-0.5 w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-[9px] font-bold" style="background: var(--gold-light); border: 2px solid var(--gold); color: var(--gold);">✓</span>
+              親子の性質マップ比較
+            </li>
+            <li class="flex items-start gap-3 text-sm border-b pb-3" style="border-color: var(--border);">
+              <span class="mt-0.5 w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-[9px] font-bold" style="background: var(--gold-light); border: 2px solid var(--gold); color: var(--gold);">✓</span>
+              すれ違いやすい場面と、その理由
+            </li>
+            <li class="flex items-start gap-3 text-sm">
+              <span class="mt-0.5 w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-[9px] font-bold" style="background: var(--gold-light); border: 2px solid var(--gold); color: var(--gold);">✓</span>
+              この親子に合った関わり方のヒント
+            </li>
+          </ul>
+
+          <div class="p-5 rounded-xl text-center text-sm leading-loose mb-6" style="background: linear-gradient(135deg, var(--gold-light) 0%, #FAFAF7 100%);">
+            このオプションはフォームからではなく、<br>
+            <strong style="color: var(--gold);">公式LINEから直接お申し込み</strong>いただけます。
+          </div>
+
+          <a href="https://lin.ee/YzQpj1P" target="_blank" class="block w-full py-4 text-center rounded-2xl bg-white border font-bold hover:bg-purple-50 transition-all shadow-sm text-sm" style="border-color: rgba(201,169,110,0.4); color: var(--text-main);">
+            LINEで「ママの性質鑑定を追加したいです」と送る
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -667,6 +835,135 @@
     </div>
   </section>
 
+  <!-- ====== よくある質問 ====== -->
+  <section id="faq" class="py-20 px-6" style="background: var(--pink-beige);">
+    <div class="max-w-2xl mx-auto">
+      <div class="text-center mb-12 reveal">
+        <span class="font-script text-3xl text-pink-300 block mb-2">FAQ</span>
+        <h2 class="text-2xl md:text-3xl font-serif font-bold">よくある質問</h2>
+      </div>
+
+      <div class="space-y-4">
+
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span class="faq-q-badge">Q</span>
+            <span>占いとは違うのですか？</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              「未来を当てる」ための占いとは違います。<br><br>
+              生年月日やお名前から読み取れる<strong style="color: var(--text-main);">「この子が生まれ持った性質」</strong>を鑑定し、日々の関わり方に活かしていただくためのものです。「この子がなぜそう動くのか」がわかると、見え方も対応も自然に変わっていきます。
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span class="faq-q-badge">Q</span>
+            <span>何歳の子どもが対象ですか？</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <strong style="color: var(--text-main);">0歳〜12歳</strong>くらいのお子さんが中心ですが、年齢制限はありません。<br><br>
+              特に<strong style="color: var(--text-main);">未就学〜小学校低学年</strong>のお子さんをお持ちのママに多くご利用いただいています。スタンダード版以上では年齢別ガイド（幼児期〜思春期）もお付けしています。
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span class="faq-q-badge">Q</span>
+            <span>出生時刻がわからなくても大丈夫ですか？</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              はい、<strong style="color: var(--text-main);">出生時刻がわからなくても鑑定は可能です。</strong><br><br>
+              出生時刻があるとより精度の高い鑑定ができますが、生年月日とお名前だけでも十分にこの子の性質をお伝えできます。母子手帳に記載がある場合はお書きいただけると助かります。
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span class="faq-q-badge">Q</span>
+            <span>プランに迷っていても申し込めますか？</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              はい、大丈夫です！<br><br>
+              お申し込みフォームで<strong style="color: var(--text-main);">「まだ迷っている」</strong>を選んでいただければ、お子さんのご年齢や今の困りごとをお伺いしながら、<strong style="color: var(--text-main);">一緒にぴったりのプランを考えます。</strong><br><br>
+              LINEやDMでの事前相談も大歓迎です。
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span class="faq-q-badge">Q</span>
+            <span>兄弟が3人以上いる場合でも申し込めますか？</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              はい、<strong style="color: var(--text-main);">3人以上でもお申し込みいただけます。</strong><br><br>
+              お申し込みフォームには2人目までの記入欄しかございませんので、まずは<strong style="color: var(--text-main);">フォームに2人目までの情報をご入力</strong>いただき、<strong style="color: var(--primary-dark);">公式LINEにて「3人以上の鑑定を希望」とお知らせください。</strong><br><br>
+              3人目以降のお子さんの情報は、LINEで直接お伺いいたします。
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span class="faq-q-badge">Q</span>
+            <span>お支払い方法は何がありますか？</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              お支払い方法は、お申し込み後にLINEにてご案内いたします。<br><br>
+              ご不明な点があればお気軽にLINEでお問い合わせください。
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span class="faq-q-badge">Q</span>
+            <span>鑑定の内容を家族に見せても大丈夫ですか？</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              ご家族（パパやおばあちゃんなど）にお見せいただくのは大歓迎です。<br><br>
+              お子さんの性質を<strong style="color: var(--text-main);">ご家族みんなで共有する</strong>ことで、関わり方の足並みが揃い、より良い効果が期待できます。<br><br>
+              <span style="font-size: 0.8rem;">※ SNS等への鑑定書の全文公開・転売はご遠慮ください。</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span class="faq-q-badge">Q</span>
+            <span>ここに書いていない質問があるのですが…</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              お気軽に<strong style="color: var(--text-main);">公式LINE</strong>からお問い合わせください。<br><br>
+              「こんなこと聞いていいのかな？」と思うことでも大丈夫です。どんな小さなことでもお気軽にどうぞ。
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ====== お申し込みはこちら ====== -->
   <section class="py-20 px-6 bg-white">
     <div class="max-w-2xl mx-auto">
@@ -740,6 +1037,17 @@
       });
     }, observerOptions);
     document.querySelectorAll('.reveal, .stagger-item').forEach(el => observer.observe(el));
+
+    // FAQ アコーディオン
+    function toggleFaq(el) {
+      const item = el.closest('.faq-item');
+      const wasOpen = item.classList.contains('open');
+      if (!wasOpen) {
+        item.classList.add('open');
+      } else {
+        item.classList.remove('open');
+      }
+    }
 
     // Mobile Menu
     const mobileBtn = document.getElementById('mobile-menu-btn');
