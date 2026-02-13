@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>うのちゃん | 子どもの性質鑑定 - ママがラクになる魔法のトリセツ</title>
+    <meta name="description" content="お子さんの生年月日・お名前から導き出す「この子専用の取扱説明書」。性質を知ることで、子育ての「なんで？」が解決します。">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600;700&family=Alex+Brush&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink-beige: #fdf5f2;
+            --soft-pink: #f8e1db;
+            --lavender: #eaddf1;
+            --deep-lavender: #9b89b3;
+            --text-main: #5a4a42;
+            --accent-gold: #c5a059;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--text-main);
+            background-color: var(--pink-beige);
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        h1, h2, h3, .font-serif {
+            font-family: 'Shippori Mincho', serif;
+            line-height: 1.3;
+        }
+
+        .font-script {
+            font-family: 'Alex Brush', cursive;
+        }
+
+        /* アニメーション用 */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .stagger-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bg-watercolor {
+            background: radial-gradient(circle at 10% 20%, rgba(234, 221, 241, 0.4) 0%, transparent 50%),
+                        radial-gradient(circle at 90% 80%, rgba(248, 225, 219, 0.4) 0%, transparent 50%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 24px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(155, 137, 179, 0.1);
+        }
+
+        .btn-gradient {
+            background: linear-gradient(135deg, #f8e1db 0%, #eaddf1 100%);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(155, 137, 179, 0.2);
+        }
+
+        .check-mark::after {
+            content: "✓";
+            color: var(--deep-lavender);
+            font-weight: bold;
+        }
+
+        .no-mark::after {
+            content: "ー";
+            color: #ccc;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-watercolor">
+
+    <header class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-white/30 backdrop-blur-md border-b border-white/20">
+        <div class="flex items-center gap-2">
+            <span class="text-2xl font-serif font-bold tracking-tighter" style="color: var(--deep-lavender);">うのちゃん</span>
+        </div>
+        <nav class="hidden md:flex gap-8 text-sm font-medium">
+            <a href="#about" class="hover:text-pink-400 transition-colors">鑑定とは</a>
+            <a href="#menu" class="hover:text-pink-400 transition-colors">メニュー</a>
+            <a href="#flow" class="hover:text-pink-400 transition-colors">お届けの流れ</a>
+            <a href="#contact" class="px-5 py-2 rounded-full btn-gradient text-xs uppercase tracking-widest font-bold">お申し込み</a>
+        </nav>
+        <button id="mobile-menu-btn" class="md:hidden text-2xl">☰</button>
+    </header>
+
+    <section class="relative min-h-screen flex items-center justify-center pt-20 px-6 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1543332143-4e8c27e3256f?q=80&w=2070&auto=format&fit=crop" alt="Parent and child" class="w-full h-full object-cover opacity-40" id="hero-img">
+        </div>
+        <div class="relative z-10 max-w-4xl text-center">
+            <span class="block font-script text-4xl mb-4 text-pink-400 opacity-80 reveal">Self Nature Reading</span>
+            <h1 class="text-4xl md:text-6xl font-serif font-bold leading-tight mb-8 reveal">
+                ママが変われば、子どもが変わる。<br>
+                <span class="text-3xl md:text-4xl opacity-90 mt-2 block">子どもを知れば、ママがラクになる。</span>
+            </h1>
+            <p class="text-lg md:text-xl mb-10 leading-relaxed reveal">
+                生年月日とお名前から導き出す、<br class="hidden md:block">
+                世界に一冊だけの「この子専用の取扱説明書」
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center reveal">
+                <a href="#" class="px-10 py-4 rounded-full btn-gradient font-bold text-lg shadow-lg">お申し込みはこちら</a>
+                <a href="#" class="px-10 py-4 rounded-full bg-white text-gray-600 font-bold text-lg border border-gray-100 shadow-sm hover:bg-gray-50 transition-all">LINEでお問い合わせ</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 px-6 bg-white/40">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-6">子どものトリセツとは</h2>
+                <p class="text-lg leading-relaxed max-w-2xl mx-auto">
+                    お子さんの生まれ持った性質を深く紐解き、<br>
+                    「この子専用の取扱説明書」としてお届けします。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+                <div class="glass-card p-8 stagger-item text-center">
+                    <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mb-6 mx-auto text-3xl">🌱</div>
+                    <h3 class="text-xl font-bold mb-3">性質タイプ・本質</h3>
+                    <p class="text-sm opacity-80">4タイプ判定と5項目のチャート。行動の根源的な理由がわかります。</p>
+                </div>
+                <div class="glass-card p-8 stagger-item text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6 mx-auto text-3xl">💡</div>
+                    <h3 class="text-xl font-bold mb-3">やる気スイッチ</h3>
+                    <p class="text-sm opacity-80">響く「声かけ」や「NG対応」を具体的に解説します。</p>
+                </div>
+                <div class="glass-card p-8 stagger-item text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6 mx-auto text-3xl">✨</div>
+                    <h3 class="text-xl font-bold mb-3">名前のエネルギー</h3>
+                    <p class="text-sm opacity-80">お名前に宿る五行のバランスから、個性を伸ばすヒントを伝えます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-serif font-bold mb-12 reveal">鑑定メニュー</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16 items-start">
+                <div class="glass-card p-8 stagger-item h-full flex flex-col">
+                    <h3 class="text-2xl font-serif font-bold mb-4">ライト版</h3>
+                    <div class="text-2xl font-bold mb-6">¥3,800 <span class="text-sm font-normal">(税込)</span></div>
+                    <ul class="text-left text-sm space-y-3 mb-8 flex-grow">
+                        <li>✔ 性質タイプ(4タイプ)</li>
+                        <li>✔ 5項目性質チャート</li>
+                        <li>✔ 接し方の基本・声がけ例</li>
+                    </ul>
+                    <a href="#" class="w-full py-3 rounded-xl border border-pink-200 hover:bg-white transition-all">申し込む</a>
+                </div>
+                <div class="glass-card p-8 stagger-item h-full flex flex-col border-2 border-lavender bg-white lg:scale-105 shadow-xl">
+                    <div class="text-xs font-bold text-purple-500 mb-2 uppercase tracking-widest">Recommended</div>
+                    <h3 class="text-2xl font-serif font-bold mb-4">スタンダード版</h3>
+                    <div class="text-2xl font-bold mb-6">¥6,800 <span class="text-sm font-normal">(税込)</span></div>
+                    <ul class="text-left text-sm space-y-3 mb-8 flex-grow">
+                        <li class="font-bold text-pink-500">★ ライト版の全内容</li>
+                        <li>✔ 学び方と効果的な伝え方</li>
+                        <li>✔ 人間関係の傾向</li>
+                        <li>✔ 年齢別ガイド</li>
+                    </ul>
+                    <a href="#" class="w-full py-3 rounded-xl btn-gradient font-bold text-white">申し込む</a>
+                </div>
+                <div class="glass-card p-8 stagger-item h-full flex flex-col">
+                    <h3 class="text-2xl font-serif font-bold mb-4">プレミアム版</h3>
+                    <div class="text-2xl font-bold mb-6">¥12,800 <span class="text-sm font-normal">(税込)</span></div>
+                    <ul class="text-left text-sm space-y-3 mb-8 flex-grow">
+                        <li class="font-bold text-purple-500">★ スタンダード版の全内容</li>
+                        <li>✔ ママの性質鑑定</li>
+                        <li>✔ 親子の相性・マップ比較</li>
+                        <li>✔ 関わり方のヒント</li>
+                    </ul>
+                    <a href="#" class="w-full py-3 rounded-xl border border-purple-200 hover:bg-white transition-all">申し込む</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 px-6 border-t border-gray-100 text-center">
+        <p class="font-serif text-xl mb-4" style="color: var(--deep-lavender);">うのちゃん</p>
+        <p class="text-xs opacity-50">&copy; 2026 うのちゃん. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Intersection Observer アニメーション
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal, .stagger-item').forEach(el => observer.observe(el));
+
+        // モバイルメニュー簡易トグル
+        const btn = document.getElementById('mobile-menu-btn');
+        btn.addEventListener('click', () => {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('hidden');
+            nav.classList.add('absolute', 'top-16', 'right-0', 'bg-white', 'w-full', 'p-6', 'flex-col', 'text-center', 'shadow-lg');
+        });
+    </script>
+</body>
+</html>
