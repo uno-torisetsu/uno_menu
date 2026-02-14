@@ -296,6 +296,91 @@
       line-height: 1.9;
       color: var(--text-light);
     }
+    /* 口コミカード */
+    .review-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 24px;
+      padding: 28px 28px 24px;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    .review-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -12px rgba(155, 137, 179, 0.12);
+    }
+    .review-card::before {
+      content: """;
+      position: absolute;
+      top: 16px;
+      left: 24px;
+      font-family: 'Shippori Mincho', serif;
+      font-size: 3.5rem;
+      line-height: 1;
+      color: var(--primary-light);
+      opacity: 0.7;
+    }
+    .review-highlight {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.9;
+      color: var(--text-main);
+      padding-left: 4px;
+      margin-bottom: 16px;
+      border-left: 3px solid var(--primary-light);
+      padding: 4px 0 4px 16px;
+    }
+    .review-body {
+      font-size: 0.82rem;
+      line-height: 2;
+      color: var(--text-light);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1), margin 0.3s ease;
+    }
+    .review-card.open .review-body {
+      max-height: 800px;
+      margin-top: 12px;
+    }
+    .review-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.75rem;
+      color: var(--primary);
+      cursor: pointer;
+      margin-top: 8px;
+      transition: opacity 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .review-toggle-btn:hover { opacity: 0.7; }
+    .review-toggle-btn svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.3s ease;
+    }
+    .review-card.open .review-toggle-btn svg {
+      transform: rotate(180deg);
+    }
+    .review-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--primary-light) 0%, #FDE8DE 100%);
+      color: var(--primary-dark);
+      margin-bottom: 14px;
+    }
+
+    @media (max-width: 640px) {
+      .review-card { padding: 24px 20px 20px; }
+      .review-card::before { font-size: 2.8rem; top: 12px; left: 18px; }
+      .review-highlight { font-size: 0.88rem; }
+    }
+
     @media (max-width: 640px) {
       .faq-question {
         padding: 16px 18px;
@@ -325,6 +410,7 @@
       <a href="#about" class="hover:text-pink-400 transition-colors">トリセツとは</a>
       <a href="#plans" class="hover:text-pink-400 transition-colors">メニュー</a>
       <a href="#flow" class="hover:text-pink-400 transition-colors">お届けの流れ</a>
+      <a href="#reviews" class="hover:text-pink-400 transition-colors">口コミ</a>
       <a href="#faq" class="hover:text-pink-400 transition-colors">よくある質問</a>
       <a href="https://forms.gle/3w7Tuhrdogrwp1RY7" target="_blank" class="px-6 py-2 rounded-full btn-gradient text-xs uppercase tracking-widest font-bold shadow-sm">お申し込み</a>
     </nav>
@@ -835,6 +921,126 @@
     </div>
   </section>
 
+  <!-- ====== お客さまの声 ====== -->
+  <section id="reviews" class="py-20 px-6 bg-white">
+    <div class="max-w-2xl mx-auto">
+      <div class="text-center mb-12 reveal">
+        <span class="font-script text-3xl text-pink-300 block mb-2">Voice</span>
+        <h2 class="text-2xl md:text-3xl font-serif font-bold mb-3">お客さまの声</h2>
+        <p class="text-sm" style="color: var(--text-muted);">トリセツを受け取られたママたちからの感想をご紹介します</p>
+      </div>
+
+      <div class="space-y-6">
+
+        <!-- 口コミ 1 -->
+        <div class="review-card reveal stagger-item">
+          <div class="pt-6">
+            <span class="review-tag">お子さま1人の鑑定</span>
+            <div class="review-highlight">
+              「なんでどうして」をしっかり説明したり、<br>
+              一緒に調べたりしてみようと思います
+            </div>
+            <p class="text-sm leading-loose" style="color: var(--text-light);">
+              「なんで？どうして？」は良く言っていて、当てはまるなと思いました！<br>
+              小さい頃は行動全てに丁寧に説明していたからか、困り事が少なかったのですが、最近は説明するのがおざなりになっていたかもしれません。
+            </p>
+            <div class="review-body">
+              <p class="leading-loose">
+                なんでどうしてをしっかり説明したり、一緒に調べたりしてみようと思います。
+              </p>
+            </div>
+            <div class="review-toggle-btn" onclick="toggleReview(this)">
+              <span class="toggle-text">続きを読む</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 口コミ 2 -->
+        <div class="review-card reveal stagger-item">
+          <div class="pt-6">
+            <span class="review-tag">きょうだい2人の鑑定</span>
+            <div class="review-highlight">
+              すごく勉強になりましたし、<br>
+              これからに活かせることばかりで<br>
+              モニターをお願いして本当に良かったです
+            </div>
+            <p class="text-sm leading-loose" style="color: var(--text-light);">
+              2人ともすごく当てはまります！！<br>
+              怒られると反発する、感情が深くこだわりが強い、興奮時は話が攻撃に聞こえ聞く耳を持ちにくい――は本当にそうで、悩んでいたことだったので解決方法もわかって良かったです。
+            </p>
+            <div class="review-body">
+              <p class="leading-loose">
+                この子はどうやったら満たされるんだろう？っていつも思ってたので、認めて欲しいの気持ちが満たされないとだめなんだなぁってわかりました！<br><br>
+                下の子は、人の反応を見たくていくっていうのがなるほど！と思いました！だから、言えば言うほど、相手が嫌がれば嫌がるほど顔を覗きに行ったりちょっかいをかけるんだなぁと納得しました。<br><br>
+                2人の性質が全く違うことは薄々感じていましたが、似ている部分もあって「とても強いチームになる」って言うのがすごく響きました。違うからこそ補い合い学び合えるふたりになっていけるように関わって行けたらいいなぁと思います！<br><br>
+                内容がとっても濃く、文章もとてもわかりやすくてあっというまに読んでしまいました！読むのもすごく楽しくて何度も何度も読みました！
+              </p>
+            </div>
+            <div class="review-toggle-btn" onclick="toggleReview(this)">
+              <span class="toggle-text">続きを読む</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 口コミ 3 -->
+        <div class="review-card reveal stagger-item">
+          <div class="pt-6">
+            <span class="review-tag">きょうだい2人の鑑定</span>
+            <div class="review-highlight">
+              息子たちの性格がとても詳しく知る事が出来て、<br>
+              モニターになれて、とても嬉しかったです！
+            </div>
+            <p class="text-sm leading-loose" style="color: var(--text-light);">
+              印刷し熟読しました！！<br>
+              長男は私に似てるな…と思いつつ、鑑定してもらった性格はまさにほぼ自分で。急かされるの嫌いと分かりつつも、遅刻しそうになるので急かしてしまい…。
+            </p>
+            <div class="review-body">
+              <p class="leading-loose">
+                トリセツを思い出しつつ長男と接していきたいと思います。<br><br>
+                次男に関しては長男と性格が逆でビックリです。私とも逆なので羨ましいな、挑戦者タイプはと思っております。<br><br>
+                とてもヤンチャになって来て毎日疲れますが、この子の性格と、ちゃんと向き合って育んでいきたいと思っております！
+              </p>
+            </div>
+            <div class="review-toggle-btn" onclick="toggleReview(this)">
+              <span class="toggle-text">続きを読む</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 口コミ 4 -->
+        <div class="review-card reveal stagger-item">
+          <div class="pt-6">
+            <span class="review-tag">お子さま1人の鑑定</span>
+            <div class="review-highlight">
+              読んでいて心が軽くなったように思いました。<br>
+              「私の育て方が悪いのかな…」という気持ちが<br>
+              少し和らぎました。
+            </div>
+            <p class="text-sm leading-loose" style="color: var(--text-light);">
+              友達との距離の所で、人見知りもなく、むしろ誰にでも話しかけに行くタイプだったので「量より質」とのお話に驚きました。けれど確かに、保育園のクラスでも好きな友達は決まっているようで、悪友のような付き合いをしている子は毎日のように名前が出ます。
+            </p>
+            <div class="review-body">
+              <p class="leading-loose">
+                耳からの情報が低めだったことにも驚きました。歌が好きでよく歌っているので耳が強いのだと思いましたが、画面の移り変わりで印象の良いとこだけをピックアップしていたのかもしれないです。色んな目からウロコなお話が聞けてとても参考になりました。<br><br>
+                中でも、寝かしつけの部分では、見通しを良くしながら約束事を決めていくことを実践していこうと思います。腹がたった時の対応も、親である私が感情的に怒らないように、寄り添うように受け止めて行きたいと思います。<br><br>
+                今まで感覚でやっていた関わり方に「理由」と「根拠」をもらえた感じがして、安心しました。<br><br>
+                すぐに全部はできないけれど、トリセツを見返しながら一つずつ実践していきたいと思います。また壁にぶつかった時は読み返します。
+              </p>
+            </div>
+            <div class="review-toggle-btn" onclick="toggleReview(this)">
+              <span class="toggle-text">続きを読む</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ====== よくある質問 ====== -->
   <section id="faq" class="py-20 px-6" style="background: var(--pink-beige);">
     <div class="max-w-2xl mx-auto">
@@ -1037,6 +1243,20 @@
       });
     }, observerOptions);
     document.querySelectorAll('.reveal, .stagger-item').forEach(el => observer.observe(el));
+
+    // 口コミ展開
+    function toggleReview(el) {
+      const card = el.closest('.review-card');
+      const wasOpen = card.classList.contains('open');
+      const textEl = el.querySelector('.toggle-text');
+      if (!wasOpen) {
+        card.classList.add('open');
+        textEl.textContent = '閉じる';
+      } else {
+        card.classList.remove('open');
+        textEl.textContent = '続きを読む';
+      }
+    }
 
     // FAQ アコーディオン
     function toggleFaq(el) {
